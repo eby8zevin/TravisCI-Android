@@ -1,3 +1,18 @@
 language: android
+jdk: oraclejdk8
 os: linux
 dist: trusty
+
+android: 
+   components:
+      - tools
+      - platform-tools
+      - tools
+      - build-tools-30.0.3
+      - android-30
+      - extra-android-m2repository
+#optional, use it if only you haven't give permission yet.
+#before_install:
+#   - chmod +x gradlew
+script:
+   - ./gradlew build
