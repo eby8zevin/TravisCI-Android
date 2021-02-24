@@ -2,7 +2,7 @@ language: android
 sudo: required
 jdk: oraclejdk8
 dist: trusty
-#os: linux
+os: linux
 
 android:
   components:
