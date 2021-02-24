@@ -1,4 +1,4 @@
-language: android
+language: java
 sudo: required
 jdk: oraclejdk8
 #dist: trusty
@@ -14,8 +14,8 @@ android:
     - extra-android-m2repository
 
 #optional, use it if only you haven't give permission yet.
-#before_install:
-#   - chmod +x gradlew
+before_install:
+   - chmod +x gradlew
   
 script:
    - ./gradlew build
