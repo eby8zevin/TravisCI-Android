@@ -16,9 +16,14 @@ android:
 before_install:
   - chmod +x gradlew
 
+before_script:
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "tools"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "platform-tools"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "build-tools;30.0.1"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "platforms;android-30"
+
 script:
   - ./gradlew clean build
-  - ./gradlew assembleRelease
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
