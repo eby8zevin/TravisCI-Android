@@ -1,7 +1,7 @@
 language: android
 dist: trusty
 jdk: oraclejdk8
-sudo: false
+sudo: required
 
 android:
   components:
@@ -19,8 +19,7 @@ script:
 
 deploy:
   provider: releases
-  api_key:
-    secure: 51bf57a114cb55001df6e9d6d04261f4b94c3e43
+  api_key: 51bf57a114cb55001df6e9d6d04261f4b94c3e43
   file: app/release/app-release.apk
   skip_cleanup: true
   on:
