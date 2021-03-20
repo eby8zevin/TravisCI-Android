@@ -1,3 +1,30 @@
 language: android
 dist: trusty
 jdk: oraclejdk8
+
+android:
+  components:
+    - tools
+    - build-tools-30.0.1
+    - android-30
+    - extra-android-m2repository
+    - extra-android-support
+
+before_install:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew assembleRelease
+
+deploy:
+  provider: releases
+  api_key:
+    secure: 51bf57a114cb55001df6e9d6d04261f4b94c3e43
+  file: app/release/app-release.apk
+  skip_cleanup: true
+  on:
+    repo: eby8zevin/TravisCI-Android
+    tags: true
+
+notifications:
+  email: false
