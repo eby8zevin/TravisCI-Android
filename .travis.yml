@@ -1,7 +1,7 @@
 language: android
-dist: trusty
 jdk: oraclejdk8
-sudo: required
+
+sudo: false
 
 android:
   components:
@@ -10,12 +10,19 @@ android:
     - android-30
     - extra-android-m2repository
     - extra-android-support
+  licenses:
+    - android-sdk-license-.+
 
 before_install:
   - chmod +x gradlew
 
 script:
+  - ./gradlew clean build
   - ./gradlew assembleRelease
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
 cache:
   directories:
@@ -25,7 +32,8 @@ cache:
 
 deploy:
   provider: releases
-  api_key: 51bf57a114cb55001df6e9d6d04261f4b94c3e43
+  api_key:
+    secure: 51bf57a114cb55001df6e9d6d04261f4b94c3e43
   file: app/release/app-release.apk
   skip_cleanup: true
   on:
