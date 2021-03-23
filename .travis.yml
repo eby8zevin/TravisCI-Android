@@ -6,16 +6,12 @@ sudo: false
 android:
   components:
     - tools
-    - build-tools-30.0.1
-    - android-30
-    - extra-android-m2repository
-    - extra-android-support
   licenses:
     - android-sdk-license-.+
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4c79c71efea8_key -iv $encrypted_4c79c71efea8_iv -in archive.tar.enc -out archive.tar -d
-  - tar xvf archive.tar
+  - tar -xzvf archive.tar
   - chmod +x gradlew
 
 before_script:
