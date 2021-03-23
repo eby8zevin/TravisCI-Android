@@ -14,6 +14,8 @@ android:
     - android-sdk-license-.+
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_5880cf525281_key -iv $encrypted_5880cf525281_iv -in archive.tar.enc -out archive.tar.gz -d
+  - tar -xzvf archive.tar.gz
   - chmod +x gradlew
 
 before_script:
@@ -38,7 +40,7 @@ cache:
 deploy:
   provider: releases
   api_key:
-    secure: 51bf57a114cb55001df6e9d6d04261f4b94c3e43
+    secure: CQOok4lrvUFsIIuvmPP2r4aa367bUhtX6eiOonoWb0qNnve2ek0aYuV35rqS9ULwOZBfo3KHdz2xnTrp2roJVnCypLwgdXOaf/LhFzh15RUJtm6d4DKDBC81fAwEEMXl4+jtK2XZyCHpqaqp+FNY08WE5LlStzgnfut2XtUhmZADD5m2RT9/oSqejAUaDmNiCIPpsWDUfVZu3GVhyMLaBrxQ8jHbkiEfdkkknyO/j9t2ErDv68+brRPIFj4LFJaWPV2iuz7M1JG2fWdmhaDHDK5hLieH1WzMHPRM6CVh0ftXleM6+DGDZhl+8ailhC8+iIQf+6UFGOkg44XlTe4VZfvNdPxGUGNf3IFuJOGwBPoiKgVp9QtPq6Mxau4WGSIiG5HGz4pjob70ZMEWok9k9ov5YP13NOekgB40+QnF26nJVTWxR4RlchBJD1PaiE42XhyMOjIfh8lpVapEcrrfBTXvnIZo6ELgSY8rwmHp1AsBSiE5I1rmeEIdBOtJZQWaFmJaNk3yA+NG0ur7JzkMIEEmLjzL+qKPkfcr1ctLoMc0SZoNZtCJxpEaPi7ecF7Z5pT/fLbummzxHUkk49KBP4PBdVkuKRC8bmWLYjjFPuh/YNcf54TRK4UmHvtrztaNwvXYTXmOxgI1N999nbhLbAklJju9tow2vyANntlGlXw=
   file: app/release/app-release.apk
   skip_cleanup: true
   on:
