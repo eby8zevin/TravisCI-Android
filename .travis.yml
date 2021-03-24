@@ -1,1 +1,45 @@
 language: android
+jdk: oraclejdk8
+
+android:
+  components:
+    - tools
+  licenses:
+    - android-sdk-license-.+
+
+before_install:
+  -
+  - tar -xzvf archive.tar.gz
+  - chmod +x gradlew
+
+before_script:
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "tools"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "platform-tools"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "build-tools;30.0.1"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "platforms;android-25"
+
+script:
+  - ./gradlew clean build
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
+deploy:
+  provider: releases
+  api_key:
+    secure:
+  file: app/release/app-release.apk
+  skip_cleanup: true
+  on:
+    repo: eby8zevin/TravisCI-Android
+    tags: true
+
+notifications:
+  email: false
