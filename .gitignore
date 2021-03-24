@@ -17,5 +17,3 @@ local.properties
 # Keystore files
 *.jks
 /keystore.properties
-
-archive.tar.gz
