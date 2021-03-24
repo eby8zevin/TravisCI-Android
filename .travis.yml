@@ -10,6 +10,8 @@ android:
     - android-sdk-license-.+
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_cbeaef396b1f_key -iv $encrypted_cbeaef396b1f_iv -in archive.tar.gz.enc -out archive.tar.gz -d
+  - tar -xzvf archive.tar.gz
   - chmod +x gradlew
 
 before_script:
@@ -34,7 +36,7 @@ cache:
 deploy:
   provider: releases
   api_key:
-    secure: CQOok4lrvUFsIIuvmPP2r4aa367bUhtX6eiOonoWb0qNnve2ek0aYuV35rqS9ULwOZBfo3KHdz2xnTrp2roJVnCypLwgdXOaf/LhFzh15RUJtm6d4DKDBC81fAwEEMXl4+jtK2XZyCHpqaqp+FNY08WE5LlStzgnfut2XtUhmZADD5m2RT9/oSqejAUaDmNiCIPpsWDUfVZu3GVhyMLaBrxQ8jHbkiEfdkkknyO/j9t2ErDv68+brRPIFj4LFJaWPV2iuz7M1JG2fWdmhaDHDK5hLieH1WzMHPRM6CVh0ftXleM6+DGDZhl+8ailhC8+iIQf+6UFGOkg44XlTe4VZfvNdPxGUGNf3IFuJOGwBPoiKgVp9QtPq6Mxau4WGSIiG5HGz4pjob70ZMEWok9k9ov5YP13NOekgB40+QnF26nJVTWxR4RlchBJD1PaiE42XhyMOjIfh8lpVapEcrrfBTXvnIZo6ELgSY8rwmHp1AsBSiE5I1rmeEIdBOtJZQWaFmJaNk3yA+NG0ur7JzkMIEEmLjzL+qKPkfcr1ctLoMc0SZoNZtCJxpEaPi7ecF7Z5pT/fLbummzxHUkk49KBP4PBdVkuKRC8bmWLYjjFPuh/YNcf54TRK4UmHvtrztaNwvXYTXmOxgI1N999nbhLbAklJju9tow2vyANntlGlXw=
+    secure: goOFc+9jCVBHgu2PJRkpM8Mp8BtuYmk+BXw4Bkoz7Uz3cnLXShKal25V1k5qrW+weITsMkNDDS7atHyagCNhhlozgSpIOUHHJ4dM28w0fWhbBz4rImrw4QOavGGKrAKqoqCqmwHvScw7ThImPy1MP/WHnZxI5pkvyy2APYaYrEwfeWJz0BC4Hbne+dE3WUnNk3NTPK1NhM9ubfCyuvv4hDl3BDlv3JDuTTDKpiDeeNYXUpcKYLoazFqNLIB7EBRVrd4Cb58A6w+KwnLRJkv7W0FcG3Tzyi8+wR7nhK3IUrDM93i2DSH/LzV5KE06mf+KI1umlljyxOYypdN42ehC7JzP1UpA5IVNxUIG4RpUnujyQMqCGopqm8Im0ANwMiLJvLegFoL1h8l5Fq5LfNAbCTgP+9o2iBTC95WtrwUtTOUxkUS/tQu7iGkkacUkJ6oKq/eVBoAPNfQcZ7dWArSxLrYhvNRsbn8wre2GIa0j/5MB3hTIPrD7yetvsy9bVDkbW5qfSjGX+DLd7dLPocA2ZzWv7C7qscPpx92WLaF5TU1VmhLOkohXntEU50fegB1yWcUgdnyqhkGlVtbQ+yBu0Ohopv04//Kms11xp9Q15ZEdNGN7VAsF5aFU2eE0cbhj0J3oWh//fx8ElkTor6jN3IcDgyALjmh+yrgxyHthz5E=
   file: app/release/app-release.apk
   skip_cleanup: true
   on:
