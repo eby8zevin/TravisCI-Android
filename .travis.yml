@@ -8,7 +8,7 @@ android:
     - android-sdk-license-.+
 
 before_install:
-  -
+  - 
   - tar -xzvf archive.tar.gz
   - chmod +x gradlew
 
