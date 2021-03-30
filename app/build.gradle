@@ -13,7 +13,7 @@ def BUILD_DATE = getBuildDate()
 android {
     signingConfigs {
         config {
-            storeFile file('app/keystore-travisci.jks')
+            storeFile file('keystore-travisci.jks')
             storePassword 'android'
             keyAlias 'travisci'
             keyPassword 'android'
