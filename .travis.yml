@@ -9,7 +9,7 @@ android:
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_cbeaef396b1f_key -iv $encrypted_cbeaef396b1f_iv -in archive.tar.gz.enc -out archive.tar.gz -d
-  - tar -xzvf archive.tar.gz
+  - tar xvf archive.tar.gz
   - chmod +x gradlew
 
 before_script:
