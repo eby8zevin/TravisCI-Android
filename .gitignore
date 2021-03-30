@@ -15,7 +15,7 @@
 local.properties
 
 # Keystore files
-*.jks
-/keystore.properties
+#*.jks
+#/app/keystore.properties
 
 archive.tar.gz
