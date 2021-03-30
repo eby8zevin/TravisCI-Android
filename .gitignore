@@ -13,9 +13,3 @@
 .externalNativeBuild
 .cxx
 local.properties
-
-# Keystore files
-#*.jks
-#/app/keystore.properties
-
-archive.tar.gz
