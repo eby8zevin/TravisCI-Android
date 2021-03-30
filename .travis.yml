@@ -29,7 +29,6 @@ before_script:
 script:
   - ./gradlew clean build
   - ./gradlew assembleRelease
-  - ./gradlew build connectedCheck
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
