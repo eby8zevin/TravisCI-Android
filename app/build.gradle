@@ -10,17 +10,13 @@ static def getBuildDate() {
 
 def BUILD_DATE = getBuildDate()
 
-def keystorePropertiesFile = rootProject.file("app/keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
 android {
     signingConfigs {
         config {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            storeFile file('C:\\Users\\NUR AIDA HASANAH\\OneDrive\\Documents\\GitHub\\TravisCI-Android\\app\\keystore-travisci.jks')
+            storePassword 'android'
+            keyAlias 'travisci'
+            keyPassword 'android'
         }
     }
     compileSdkVersion 30
