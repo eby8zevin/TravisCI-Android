@@ -1,0 +1,55 @@
+language: android
+jdk: oraclejdk8
+
+sudo: false
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-30.0.1
+    - android-30
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-android-support
+  licenses:
+    - android-sdk-license-.+
+    - google-gdk-license-.+
+
+before_install:
+  - chmod +x gradlew
+
+before_script:
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "tools"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "platform-tools"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "build-tools;30.0.1"
+  - echo yes | ${ANDROID_HOME}tools/bin/sdkmanager "platforms;android-25"
+
+script:
+  - ./gradlew clean build
+  - ./gradlew assembleRelease
+  - ./gradlew build connectedCheck
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
+deploy:
+  provider: releases
+  api_key:
+    secure: RGGq0UrE+Akve5ZIL4aHjSmjrN7ir69anW2ASenxxNN1ifwE9m7CYEa21clvz1kbbNRMe/BvaKLQfViOIv2l9JbYx6w/4/7GtrkHZx4+UI3FfqFZDU63viMyt5jgbfUH+nEwkcr9paBTgBsY/WvjvOkeDX078Ece6a9zZ9mbYwWZ1dm8kEJty2ktyZ2m4okc16YaRgNGj52KKzVo3A4Yg1d7saaThT8L9SYj6zN2hdDCDMLvX8GP23sYljMn/cIEbYHdcUq2W2FUqfvqt5X1wt4gcLAkdSdNdidoTJlvr75aNHYtUkmsxrBDDQHpTcwET7XHLiP3P3GoP2EYmzOEnZ/64ksEAEC5KeTWmX4bhIOmTQjbbbozmDKam4QsyD/8ggjd11gqtUrTvkgTu54xwJzAqBP/H4x3iDPQ9YLE9H7Mvq4lgI/y24bxtr2ffAju5BeQ1MpLNI0OGZscnChVjasAQwVZ/vjTjfFOr9ru/JMMjr8uA+R5z5s65Plx2rfsBRN7cggq3+gSG7NkTMF2CSEro9Kbwp6B0emLHyWx1luvF1uS5CTus6Xlg0Z9B073SUcpeRf3C2mCFAfknTohaONy8THdvsSoaMvCggsr1wFd1wcRhLi+BxKu9LaqmDk8o3tpxTbvIiYfyiy0RtiQAsq2tcRT7CKT19xjNZF4by4=
+  file: app/release/app-release.apk
+  skip_cleanup: true
+  on:
+    repo: eby8zevin/TravisCI-Android
+    tags: true
+
+notifications:
+  email: false
